@@ -29,12 +29,15 @@ int ITimeDiscretization::iteration(double t_n){
 	int index = -1 ; 
 	for (int i = 0 ; i < nb_points ; i++){
 
-		if (time[i] == t_n){
+		if (abs(time[i] - t_n) < 10e-11){
 			return i ; 
 		};
 	}
 	return index ; 
 };
+
+
+
 
 //double ITimeDiscretization::get_dt(double time){
 //	// suggestion : pas de discretisation constant 
