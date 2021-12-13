@@ -5,7 +5,8 @@
 
 namespace sc = std::chrono ; 
 
-Timer::Timer(void){ //init to zero time
+Timer::Timer(void){
+	//init to zero time
 	time_start = sc::steady_clock::now() ; 
 	time_stop = sc::steady_clock::now();
 	sc::duration<double>  time_delta ; 

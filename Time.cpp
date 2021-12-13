@@ -37,8 +37,6 @@ int ITimeDiscretization::iteration(double t_n){
 };
 
 
-
-
 //double ITimeDiscretization::get_dt(double time){
 //	// suggestion : pas de discretisation constant 
 //	double dt = (time_end - time_init)* (time + 0.01)/npas ; 	
