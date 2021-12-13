@@ -11,5 +11,5 @@ class Equation{
 		~Equation();
 		
 		double compute(double, double, Variable&);
-		void compute_initial_condition(Variable&, double, double);
+		void compute_initial_condition(Variable&, std::shared_ptr<ITimeDiscretization>, double, double);
 };

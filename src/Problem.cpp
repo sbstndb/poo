@@ -25,8 +25,8 @@ void Problem::solve(){
 	set_uniform_discretization();
 	nb_points = ptr_discretization->npas + 1 ; 
 	ptr_discretization->compute_time();
-	e.compute_initial_condition(v, t_0, y_0);
-	e.compute_initial_condition(v_ana, t_0, y_0);	
+	e.compute_initial_condition(v, ptr_discretization, t_0, y_0);
+	e.compute_initial_condition(v_ana, ptr_discretization, t_0, y_0);	
 	// lambda fnction for analytical solution 
 	auto y_ana = [](Variable v, auto current_time){ return v.variable[0] + current_time*current_time/2 ; };
 	ptimer.start();

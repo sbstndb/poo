@@ -16,10 +16,10 @@ double Equation::compute(double current_time, double dt, Variable& v){
 	return new_y ; 
 }
 
-void Equation::compute_initial_condition(Variable& v, double t_0, double y_0){
+void Equation::compute_initial_condition(Variable& v, std::shared_ptr<ITimeDiscretization> time, double t_0, double y_0){
 
-	double ci = t_0 ; 
-	v.variable[0] = y_0  ;
+	int index_0 = time->iteration(t_0) ; 
+	v.variable[index_0] = y_0  ;
 	
 	// il faudrait faire avec un index  
 }

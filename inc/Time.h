@@ -20,7 +20,7 @@ class ITimeDiscretization {
 		double time_init = 0;
 		double time_end = 10 ; 
 		double dt ;
-		int npas = 100000 ; 
+		int npas = 1000 ; 
 	
 };
 
