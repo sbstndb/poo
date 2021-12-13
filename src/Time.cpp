@@ -14,10 +14,10 @@ double ITimeDiscretization::get_time_end(){
 };
 
 void ITimeDiscretization::compute_time(void ){
-	time.resize(nb_points) ; 
+	time.resize(npas + 1 ) ; 
 	time[0] = time_init ; 
 	double current_time = time_init ; 
-	for (int i = 1 ; i < nb_points ; i++){
+	for (int i = 1 ; i < npas + 1 ; i++){
 		dt = get_dt(current_time); 
 		current_time += dt ; 
 		time[i] =  current_time ; 
@@ -26,14 +26,18 @@ void ITimeDiscretization::compute_time(void ){
 
 int ITimeDiscretization::iteration(double t_n){
 
-	int index = -1 ; 
-	for (int i = 0 ; i < nb_points ; i++){
+	//int index = -1 ; 
+	//for (int i = 0 ; i < npas + 1 ; i++){
 
-		if (abs(time[i] - t_n) < 10e-11){
-			return i ; 
-		};
-	}
-	return index ; 
+	//	if (abs(time[i] - t_n) < 10e-11){
+	//		return i ; 
+	//	};
+	//}
+	
+	auto index2 = std::lower_bound(time.begin(), time.end(), t_n) ;
+	//std::cout << "index2 : " << (index2 - time.begin()) << std::endl ; 
+	//std::cout << "iteration " << std::endl ;
+	return (index2 - time.begin()) ; 
 };
 
 

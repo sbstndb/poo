@@ -19,13 +19,13 @@ class ITimeDiscretization {
 		std::vector<double> time ; 
 		double time_init = 0;
 		double time_end = 10 ; 
-		double dt = 1 ; 
-		int npas = 10 ; 
-		int nb_points = 11  ;
+		double dt ;
+		int npas = 100000 ; 
 	
 };
 
 
+ 
 
 class UniformTimeDiscretization : public ITimeDiscretization{
 	public:

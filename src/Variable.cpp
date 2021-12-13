@@ -11,15 +11,17 @@
 Variable::Variable(std::shared_ptr<ITimeDiscretization> ptr, int type ){ 
 	this->type = type;
 	ptr_discretization = ptr ; 	
-	variable.resize(ptr_discretization->nb_points);
+	variable.resize(ptr_discretization->npas + 1);
 };	
 Variable::~Variable(void){;};	
 
 float Variable::operator()(double t_n){
-	int index = ptr_discretization->iteration(t_n) ; 
-	if (index == -1){
-		return 0.0 ; 
-	}	
+	int index = ptr_discretization->iteration(t_n) ; 	
+	//if (index == -1){
+	//	return 0.0 ; 
+	//}	
+	
+	//std::cout << " variable operator : "<< variable[index]  << std::endl ; 	
 	return variable[index] ; 
 };
 
