@@ -39,6 +39,7 @@ void Problem::solve(){
 	// lambda fnction for analytical solution 
 	
 	auto y_ana = [](Variable v, auto current_time){ return v.variable[0] + current_time*current_time/2 ; };
+	ptimer.start();
 	for (int i = 1 ; i < nb_points ; i++)
 	{
 		std::cout << "i : " <<i << std::endl ; 
@@ -53,8 +54,10 @@ void Problem::solve(){
 		std::cout << "exact solution " << y_ana(v, time) << std::endl ; 	
 		v_ana.variable[i] = 	y_ana(v, time) ; 
 	}
+	ptimer.stop();
 	v.print();
 	v_ana.print();
+	ptimer.print();
 };
 
 

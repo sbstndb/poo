@@ -3,6 +3,7 @@
 #include <vector>
 #include <memory>
 #include <iostream>
+#include "Timer.h"
 
 int main()
 {
@@ -51,7 +52,8 @@ int main()
 	std::cout <<"resultat operator "<< v(number) << std::endl ;
 */
 	
-
+	Timer t1 ; 
+	t1.start();
 	for (int i = 0 ; i < 10 ; i++){
 		std::cout << " variable[" << i << "] : " << p.v.variable[i] << std::endl ; 
 	}
@@ -70,6 +72,8 @@ int main()
 	std::cout << "value of y " << y << std::endl ; 	
 	y = 2 ;  
 	std::cout << "value of y " << p.v(1.0) << std::endl ; 
+	t1.stop();
+	t1.print();
 	
 
 	

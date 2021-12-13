@@ -1,6 +1,7 @@
 #pragma once
 #include "Equation.h"
 #include "Variable.h"
+#include "Timer.h"
 #include "Time.h"
 #include <memory>
 #include <iostream>
@@ -24,5 +25,7 @@ class Problem {
 		void set_uniform_discretization();
 		void set_specific_discretization();
 		void solve();
+		
+		Timer ptimer ; 
 
 };
