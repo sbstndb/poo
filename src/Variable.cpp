@@ -3,7 +3,9 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-
+#include <iterator>
+#include <algorithm>
+#include <numeric>
 
 
 Variable::Variable(std::shared_ptr<ITimeDiscretization> ptr, int type ){ 
@@ -23,6 +25,14 @@ float Variable::operator()(double t_n){
 
 
 void Variable::print(void){
+	std::cout <<"*-------- Variable data --------*"<< std::endl ;
+	std::cout << "| solution initiale : " << variable.front() << std::endl ;
+	std::cout << "| solution finale : " << variable.back() << std::endl ;
+	std::cout << "| solution minimale : " << *std::min_element(variable.begin(), variable.end()) << std::endl ;
+	std::cout << "| solution maximale : " << *std::max_element(variable.begin(), variable.end()) << std::endl ;
+	std::cout << "| solution moyenne : " << (std::accumulate(variable.begin(), variable.end(), 0.0) / variable.size()) << std::endl ;
+	std::cout <<"*-------------------------------*"<< std::endl<< std::endl ;	
+	
 	std::string str1 ; 
 	if (type == 0){
 		str1 = "result.txt";
