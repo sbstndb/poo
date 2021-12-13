@@ -19,8 +19,8 @@ class Problem {
 		double time = 0 ; 
 		double dt = 0 ; 
 		int nb_points ; 
-		double t_0 = 4 ;
-		double y_0 = 10 ; 
+		double t_0 = 5 ;
+		double y_0 = 0 ; 
 		Equation e ; 
 		std::shared_ptr<ITimeDiscretization> ptr_discretization = std::make_shared<UniformTimeDiscretization>();
 		Variable v = Variable(ptr_discretization, 0) ; 
