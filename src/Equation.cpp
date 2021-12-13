@@ -19,7 +19,8 @@ double Equation::compute(double current_time, double dt, Variable& v){
 void Equation::compute_initial_condition(Variable& v, std::shared_ptr<ITimeDiscretization> time, double t_0, double y_0){
 
 	int index_0 = time->iteration(t_0) ; 
-	v.variable[index_0] = y_0  ;
 	
+	v.variable[index_0] = y_0  ;
+	std::cout << "index : " << index_0 << " value " << y_0 << std::endl ; 
 	// il faudrait faire avec un index  
 }
