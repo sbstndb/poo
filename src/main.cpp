@@ -6,13 +6,13 @@
 #include "Timer.h"
 
 int main()
-{
-	Problem p ; 
-
+{	
 	Timer t1 ; 
 	t1.start();
+	
+	Problem p ; 
 
-	p.solve();
+	p.parallel_solve();
 	
 	t1.stop();
 	t1.print();

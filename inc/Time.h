@@ -21,7 +21,7 @@ class ITimeDiscretization {
 		double time_init = 0;
 		double time_end = 10 ; 
 		double dt ;
-		int npas = 20 ; 
+		int npas = 2000000 ; 
 		
 		double tlim = 10 ;
 		double dtbefore = 1.0 ;

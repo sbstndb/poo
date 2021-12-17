@@ -1,4 +1,5 @@
 #include <iostream>
+#include <thread>
 #include "Problem.h"
 
 
@@ -57,6 +58,71 @@ void Problem::solve(){
 	
 	ptimer.print();
 };
+
+void Problem::parallel_solve(){
+	set_uniform_discretization();
+	nb_points = ptr_discretization->npas + 1 ; 
+	ptr_discretization->compute_time();
+	
+	e.compute_initial_condition(v, ptr_discretization, t_0, y_0);
+	e.compute_initial_condition(v_ana, ptr_discretization, t_0, y_0);	
+	
+	// lambda fnction for analytical solution 
+	auto y_ana = [](double y_0, auto t_0, auto current_time){ return y_0 - t_0 * t_0 / 2 + current_time * current_time / 2 ; };
+	
+	ptimer.start();
+	
+	// reverse solving
+	
+	std::thread compute_reverse_variable([this] {
+		for (int i = ptr_discretization->iteration(t_0) -1 ; i >= 0 ; i--){
+			time = ptr_discretization->time[i];
+			dt = -time +ptr_discretization->time[i+1];
+			v.variable[i] = e.compute(time, -dt, v );
+		}
+	});
+	
+	std::thread compute_reverse_variable_ana([this, y_ana] {
+		for (int i = ptr_discretization->iteration(t_0) -1 ; i >= 0 ; i--){
+			time = ptr_discretization->time[i];
+			dt = -time +ptr_discretization->time[i+1];
+			v_ana.variable[i] = 	y_ana(y_0, t_0, time) ;
+		}
+	});	
+	
+	
+	std::thread compute_variable([this] {
+		for (int i = ptr_discretization->iteration(t_0) +1 ; i < nb_points ; i++){
+			time = ptr_discretization->time[i-1];
+			dt = -time +ptr_discretization->time[i+1];
+			v.variable[i] = e.compute(time, -dt, v );
+		}
+	});
+	
+	std::thread compute_variable_ana([this, y_ana] {
+		for (int i = ptr_discretization->iteration(t_0) +1 ; i < nb_points ; i++){
+			time = ptr_discretization->time[i-1];
+			dt = +time - ptr_discretization->time[i+1];
+			v_ana.variable[i] = 	y_ana(y_0, t_0, time) ;
+		}
+	});	
+	
+	compute_reverse_variable_ana.join() ; 	
+	compute_variable_ana.join() ; 	
+	compute_reverse_variable.join() ; 
+	compute_variable.join() ; 
+
+	
+	
+	ptimer.stop();
+	
+	v.print();
+	v_ana.print();
+	
+	ptimer.print();
+	
+};
+
 
 
 
