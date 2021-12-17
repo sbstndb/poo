@@ -18,10 +18,10 @@ class Problem {
 		void parallel_solve();		
 			
 		double time = 0 ; 
-		double dt = 0 ; 
+		double dt = 1.0 ; 
 		int nb_points ; 
-		double t_0 = 5 ;
-		double y_0 = 5 ; 
+		double t_0 = 0 ;
+		double y_0 = 0 ; 
 		Equation e ; 
 		std::shared_ptr<ITimeDiscretization> ptr_discretization = std::make_shared<UniformTimeDiscretization>();
 		Variable v = Variable(ptr_discretization, 0) ; 

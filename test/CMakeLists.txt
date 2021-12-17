@@ -7,10 +7,13 @@ find_package(TBB)
 
 add_executable(TestDiscretization ${Simulator_SOURCE_DIR}/test/test_discretization.cpp ${SRC})
 add_executable(TestThread ${Simulator_SOURCE_DIR}/test/test_thread.cpp ${SRC})
+add_executable(TestVariable ${Simulator_SOURCE_DIR}/test/test_variable.cpp ${SRC})
+
 
 target_link_libraries(TestDiscretization Threads::Threads TBB::tbb)
 target_link_libraries(TestThread Threads::Threads TBB::tbb)
-
+target_link_libraries(TestVariable Threads::Threads TBB::tbb)
 
 add_test(testDiscretization TestDiscretization)
 add_test(testThread TestThread)
+add_test(testVariable TestVariable)

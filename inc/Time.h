@@ -15,13 +15,14 @@ class ITimeDiscretization {
 		virtual double get_dt(double) = 0;	
 		virtual double get_dt(double, double, double, double) =0;	
 		int iteration(double) ; 
-		virtual void compute_time() = 0;		
+		virtual void compute_time() = 0;
+		void set_npas(int);		
 		
 		std::vector<double> time ; 
 		double time_init = 0;
 		double time_end = 10 ; 
 		double dt ;
-		int npas = 2000000 ; 
+		int npas = 100 ;
 		
 		double tlim = 10 ;
 		double dtbefore = 1.0 ;

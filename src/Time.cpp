@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-ITimeDiscretization::ITimeDiscretization(){;}
+ITimeDiscretization::ITimeDiscretization(){}
 
 double ITimeDiscretization::get_time_init(){
 	return time_init ;
@@ -12,6 +12,11 @@ double ITimeDiscretization::get_time_init(){
 double ITimeDiscretization::get_time_end(){
 	return time_end ;
 };
+
+void ITimeDiscretization::set_npas(int np){
+	npas = np ; 
+};
+
 /*
 void ITimeDiscretization::compute_time(void ){
 	time.resize(npas + 1 ) ; 
