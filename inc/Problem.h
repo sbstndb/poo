@@ -14,13 +14,14 @@ class Problem {
 		
 		void set_uniform_discretization();
 		void set_specific_discretization();
-		void solve();		
+		void solve();
+		void parallel_solve();		
 			
 		double time = 0 ; 
 		double dt = 0 ; 
 		int nb_points ; 
 		double t_0 = 5 ;
-		double y_0 = 0 ; 
+		double y_0 = 5 ; 
 		Equation e ; 
 		std::shared_ptr<ITimeDiscretization> ptr_discretization = std::make_shared<UniformTimeDiscretization>();
 		Variable v = Variable(ptr_discretization, 0) ; 
